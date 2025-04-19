@@ -26,6 +26,10 @@ jobs:
           node-version: 18 # La versión específica de Node que debe usarse para construir tu sitio. (opcional)
           package-manager: npm # El administrador de paquetes de Node que debe usarse para instalar dependencias y construir tu sitio. Automáticamente detectado en base a tus archivos de bloqueo. (opcional)
 
+      # Crea el archivo .nojekyll para evitar el procesamiento de Jekyll
+      - name: Create .nojekyll file
+        run: touch ./dist/.nojekyll
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
