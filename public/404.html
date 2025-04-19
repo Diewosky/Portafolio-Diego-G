@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redireccionando...</title>
+  <script>
+    // Extraer el path de la URL (sin incluir el dominio)
+    var pathSegmentsToKeep = 1;
+    var l = window.location;
+    var segmentCount = 0;
+    var redirectTo = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/' + 'Portafolio-Diego-G';
+    
+    if (l.pathname.indexOf('/Portafolio-Diego-G') === 0) {
+      segmentCount = 1;
+      redirectTo = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + l.pathname.slice(0, l.pathname.indexOf('/', segmentCount + 1));
+    }
+    
+    redirectTo += l.pathname.slice(l.pathname.indexOf('/', segmentCount + 1));
+    
+    // Si hay parámetros de consulta o hash, añadirlos a la redirección
+    redirectTo = redirectTo + (l.search || '') + (l.hash || '');
+    
+    // Redireccionar a la URL base con los parámetros y hash
+    window.location.replace(redirectTo);
+  </script>
+</head>
+<body>
+  <p>Si no eres redireccionado automáticamente, <a href="/">haz clic aquí</a>.</p>
+</body>
+</html> 

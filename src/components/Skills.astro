@@ -86,7 +86,7 @@ const colorClasses = {
 // Función para obtener la ruta del icono
 const getIconPath = (icon) => {
   // Verificar si existe el formato PNG
-  return `/icons/${icon}.png`;
+  return `${import.meta.env.BASE_URL}/icons/${icon}.png`;
 };
 ---
 
