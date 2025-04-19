@@ -2,16 +2,51 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Redireccionando...</title>
+  <title>Página no encontrada</title>
+  <meta http-equiv="refresh" content="0;URL='/Portafolio-Diego-G/'">
   <script>
-    // Redirección simple para GitHub Pages
-    var baseUrl = '/Portafolio-Diego-G';
-    var l = window.location;
-    window.location.href = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + baseUrl;
+    // Script más simple de redirección que evita bucles
+    setTimeout(function() {
+      window.location.replace('/Portafolio-Diego-G/');
+    }, 100);
   </script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Página no encontrada</h1>
-  <p>Si no eres redireccionado automáticamente, <a href="/Portafolio-Diego-G/">haz clic aquí para ir a la página principal</a>.</p>
+  <div class="container">
+    <h1>404 - Página no encontrada</h1>
+    <p>Redireccionando a la página principal...</p>
+    <p>Si no eres redireccionado automáticamente, <a href="/Portafolio-Diego-G/">haz clic aquí para ir a la página principal</a>.</p>
+  </div>
 </body>
 </html> 
