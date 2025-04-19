@@ -7,4 +7,8 @@ export default defineConfig({
   integrations: [tailwind()],
   site: 'https://diewosky.github.io',
   base: '/Portafolio-Diego-G',
+  trailingSlash: 'always',
+  build: {
+    format: 'directory',
+  }
 });

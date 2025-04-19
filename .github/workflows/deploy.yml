@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -30,12 +32,21 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Crea el archivo .nojekyll para evitar el procesamiento de Jekyll
-      - name: Create .nojekyll file
-        run: touch dist/.nojekyll
+      # Preparar archivos para el despliegue
+      - name: Prepare files for deployment
+        run: |
+          touch dist/.nojekyll
+          cp public/404.html dist/404.html
+          cp public/CNAME dist/CNAME 2>/dev/null || true
+          echo "Base URL: /Portafolio-Diego-G" > dist/site-info.txt
+          
+      # Verificar estructura de la carpeta dist
+      - name: List dist directory
+        run: ls -la dist
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          branch: gh-pages 
+          branch: gh-pages
+          clean: true # Limpia el branch de destino antes de desplegar 
