@@ -7,16 +7,9 @@ on:
   # Permite ejecutar manualmente desde la pestaña Actions
   workflow_dispatch:
 
-# Permitir que este job clone el repositorio y cree un despliegue en GitHub Pages
+# Configuración de permisos
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
   build-and-deploy:
