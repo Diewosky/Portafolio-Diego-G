@@ -17,18 +17,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          # path: . # La ubicación del código fuente de tu sitio Astro dentro del repositorio. (opcional)
-          node-version: 18 # La versión específica de Node que debe usarse para construir tu sitio. (opcional)
-          package-manager: npm # El administrador de paquetes de Node que debe usarse para instalar dependencias y construir tu sitio. Automáticamente detectado en base a tus archivos de bloqueo. (opcional)
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Astro
+        run: npm run build
 
       # Crea el archivo .nojekyll para evitar el procesamiento de Jekyll
       - name: Create .nojekyll file
         run: touch ./dist/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
 
   deploy:
     needs: build
@@ -39,4 +50,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1 
+        uses: actions/deploy-pages@v2 
