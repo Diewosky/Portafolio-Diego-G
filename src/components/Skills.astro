@@ -1,0 +1,211 @@
+---
+const technologies = {
+  web: {
+    title: "Web Development",
+    categories: [
+      {
+        name: "Programming",
+        skills: [
+          { name: "JavaScript", color: "yellow", icon: "JavaScript" }
+        ]
+      },
+      {
+        name: "Front End",
+        skills: [
+          { name: "React", color: "blue", icon: "React" },
+          { name: "Vite", color: "purple", icon: "Vite.js" },
+          { name: "Google Sign-In", color: "red", icon: "Google" }
+        ]
+      },
+      {
+        name: "Back End",
+        skills: [
+          { name: "Node.js", color: "green", icon: "Node.js" },
+          { name: "Express.js", color: "gray", icon: "Express" }
+        ]
+      }
+    ]
+  },
+  mobile: {
+    title: "Mobile Development",
+    categories: [
+      {
+        name: "Tech",
+        skills: [
+          { name: "React Native", color: "blue", icon: "React" },
+          { name: "Kotlin", color: "purple", icon: "Kotlin" },
+          { name: "Jetpack Compose", color: "blue", icon: "compose" },
+          { name: "Retrofit", color: "orange", icon: null },
+          { name: "Google Sign-In", color: "red", icon: "Google" }
+        ]
+      }
+    ]
+  },
+  infrastructure: {
+    title: "Databases | Cloud | Dev Tools",
+    categories: [
+      {
+        name: "DB",
+        skills: [
+          { name: "MongoDB", color: "green", icon: "MongoDB" },
+          { name: "Firebase", color: "yellow", icon: "Firebase" }
+        ]
+      },
+      {
+        name: "Cloud",
+        skills: [
+          { name: "Azure", color: "blue", icon: "Azure" },
+          { name: "Render", color: "teal", icon: null }
+        ]
+      },
+      {
+        name: "Tools",
+        skills: [
+          { name: "Git", color: "red", icon: "Git" },
+          { name: "Postman", color: "orange", icon: "Postman" }
+        ]
+      }
+    ]
+  }
+};
+
+// Colores para las badges con transparencia
+const colorClasses = {
+  blue: "bg-blue-500/30 border border-blue-600 text-blue-900 dark:text-blue-200",
+  green: "bg-green-500/30 border border-green-600 text-green-900 dark:text-green-200",
+  red: "bg-red-500/30 border border-red-600 text-red-900 dark:text-red-200",
+  yellow: "bg-yellow-500/30 border border-yellow-600 text-yellow-900 dark:text-yellow-200",
+  purple: "bg-purple-500/30 border border-purple-600 text-purple-900 dark:text-purple-200",
+  pink: "bg-pink-500/30 border border-pink-600 text-pink-900 dark:text-pink-200",
+  indigo: "bg-indigo-500/30 border border-indigo-600 text-indigo-900 dark:text-indigo-200",
+  teal: "bg-teal-500/30 border border-teal-600 text-teal-900 dark:text-teal-200",
+  orange: "bg-orange-500/30 border border-orange-600 text-orange-900 dark:text-orange-200",
+  gray: "bg-gray-500/30 border border-gray-600 text-gray-900 dark:text-gray-200"
+};
+
+// Función para obtener la ruta del icono
+const getIconPath = (icon) => {
+  // Verificar si existe el formato PNG
+  return `/icons/${icon}.png`;
+};
+---
+
+<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4 md:px-6">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+      <span class="text-emerald-600 dark:text-emerald-400">&lt;</span>
+      <span class="text-gray-800 dark:text-gray-100">Tecnologías</span>
+      <span class="text-emerald-600 dark:text-emerald-400">/&gt;</span>
+    </h2>
+    
+    <!-- Web Development -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+        <span class="mr-2">💻</span> {technologies.web.title}
+      </h3>
+      
+      <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+        <!-- Encabezados -->
+        <div class="grid grid-cols-3 border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+          {technologies.web.categories.map(category => (
+            <div class="p-4 text-center font-bold text-gray-800 dark:text-gray-100">
+              {category.name}
+            </div>
+          ))}
+        </div>
+        
+        <!-- Contenido -->
+        <div class="grid grid-cols-3 bg-white dark:bg-gray-900">
+          {technologies.web.categories.map(category => (
+            <div class="p-4 flex flex-wrap gap-2 justify-center border-r border-gray-200 dark:border-gray-700 last:border-r-0">
+              {category.skills.map(skill => (
+                <div class={`px-3 py-2 rounded text-sm font-medium flex items-center shadow-sm ${colorClasses[skill.color]}`}>
+                  {skill.icon && <img src={getIconPath(skill.icon)} alt={skill.name} class="w-5 h-5 mr-2" />}
+                  {skill.name}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Development -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+        <span class="mr-2">📱</span> {technologies.mobile.title}
+      </h3>
+      
+      <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+        <!-- Encabezados -->
+        <div class="grid grid-cols-1 border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+          {technologies.mobile.categories.map(category => (
+            <div class="p-4 text-center font-bold text-gray-800 dark:text-gray-100">
+              {category.name}
+            </div>
+          ))}
+        </div>
+        
+        <!-- Contenido -->
+        <div class="grid grid-cols-1 bg-white dark:bg-gray-900">
+          {technologies.mobile.categories.map(category => (
+            <div class="p-4 flex flex-wrap gap-2 justify-center">
+              {category.skills.map(skill => (
+                <div class={`px-3 py-2 rounded text-sm font-medium flex items-center shadow-sm ${colorClasses[skill.color]}`}>
+                  {skill.icon && <img src={getIconPath(skill.icon)} alt={skill.name} class="w-5 h-5 mr-2" />}
+                  {skill.name}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Databases | Cloud | Dev Tools -->
+    <div>
+      <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+        <span class="mr-2">🗄️</span> {technologies.infrastructure.title}
+      </h3>
+      
+      <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+        <!-- Encabezados -->
+        <div class="grid grid-cols-3 border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+          {technologies.infrastructure.categories.map(category => (
+            <div class="p-4 text-center font-bold text-gray-800 dark:text-gray-100">
+              {category.name}
+            </div>
+          ))}
+        </div>
+        
+        <!-- Contenido -->
+        <div class="grid grid-cols-3 bg-white dark:bg-gray-900">
+          {technologies.infrastructure.categories.map(category => (
+            <div class="p-4 flex flex-wrap gap-2 justify-center border-r border-gray-200 dark:border-gray-700 last:border-r-0">
+              {category.skills.map(skill => (
+                <div class={`px-3 py-2 rounded text-sm font-medium flex items-center shadow-sm ${colorClasses[skill.color]}`}>
+                  {skill.icon && <img src={getIconPath(skill.icon)} alt={skill.name} class="w-5 h-5 mr-2" />}
+                  {skill.name}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Google Sign-In Destacado -->
+    <div class="mt-16 p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100 flex items-center">
+        <div class="w-8 h-8 mr-2 flex items-center justify-center bg-red-500/20 rounded-full p-1.5 border border-red-500">
+          <img src={getIconPath("Google")} alt="Google" class="w-5 h-5" />
+        </div>
+        Google Sign-In
+      </h3>
+      <p class="text-gray-600 dark:text-gray-400">
+        Implementación de Google Sign-In en apps móviles y web, usando Firebase Authentication, Jetpack y SDKs oficiales. 
+        Ofrece inicio de sesión rápido, seguro y confiable para los usuarios.
+      </p>
+    </div>
+  </div>
+</section> 

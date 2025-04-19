@@ -1,0 +1,126 @@
+---
+const projects = [
+  {
+    title: "Sistema de Apoyo a las Inspecciones de Máquinas – Indama",
+    summary: "Sistema completo desarrollado para la empresa Indama con el objetivo de digitalizar y facilitar el proceso de inspección de maquinaria industrial. Este proyecto fue mi trabajo de titulación, realizado de forma completamente individual, cubriendo todas las etapas del ciclo de vida del software.",
+    description: "La solución está compuesta por: Una app móvil Android desarrollada en Kotlin con Jetpack Compose, para registrar inspecciones directamente en terreno. Una plataforma web en React + Vite que permite visualizar, gestionar y consultar registros, con filtros, paneles de resumen e historial. Un backend hecho en Node.js y Express.js, encargado de la lógica de negocio, operaciones de datos y control de autenticación. Una base de datos en Firebase, utilizada para almacenar registros, formularios y usuarios, etc de forma segura. Autenticación mediante Google Sign-In implementada tanto en la web como en la app móvil. Despliegue en Azure, con infraestructura cloud pensada para garantizar disponibilidad y escalabilidad.",
+    image: "/project-placeholder-1.jpg",
+    tags: ["Proyecto de Tesis", "Fullstack", "React", "Node.js", "Kotlin", "Firebase", "Azure", "Google Sign-In", "Proyecto Individual"],
+    github: "#",
+    demo: "#",
+    featured: true
+  }
+];
+---
+
+<section id="projects" class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 md:px-6">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+      <span class="text-emerald-600 dark:text-emerald-400">&lt;</span>
+      <span class="text-gray-800 dark:text-gray-100">Proyectos</span>
+      <span class="text-emerald-600 dark:text-emerald-400">/&gt;</span>
+    </h2>
+    
+    {projects.filter(p => p.featured).map(project => (
+      <div class="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden border-2 border-emerald-500 dark:border-emerald-400 shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
+        <div class="relative h-80 overflow-hidden bg-gray-200 dark:bg-gray-700">
+          <!-- Placeholder para imagen o destacado -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <!-- Código decorativo en el fondo -->
+            <div class="absolute inset-0 opacity-10 overflow-hidden">
+              <pre class="text-xs text-emerald-500 p-4">{`function ${project.title.replace(/\s+/g, '')}() {
+  const tech = [${project.tags.map(t => `"${t}"`).join(', ')}];
+  return <Project data={tech} />;
+}`}</pre>
+            </div>
+            <!-- Etiquetas destacadas -->
+            <div class="absolute top-4 right-4 flex flex-col gap-2">
+              <div class="bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                Proyecto Destacado
+              </div>
+              <div class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                Proyecto de Tesis
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="p-8">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-3">{project.title}</h3>
+          
+          <!-- Resumen inicial -->
+          <p class="text-gray-600 dark:text-gray-400 mb-4">{project.summary}</p>
+          
+          <!-- Detalles que se muestran/ocultan -->
+          <div class="mb-4 details-content hidden" id="project-details">
+            <p class="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
+          </div>
+          
+          <!-- Botón para mostrar/ocultar -->
+          <button id="toggle-details" class="mb-6 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 flex items-center font-medium">
+            <span class="show-more-text">Ver más información</span>
+            <span class="show-less-text hidden">Ver menos información</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 chevron-down" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 chevron-up hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            {project.tags.map(tag => (
+              <span class="text-xs font-medium bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 px-2 py-1 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          <div class="flex space-x-4">
+            <a href={project.github} class="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center">
+              <svg class="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+              Código
+            </a>
+            <a href={project.demo} class="text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+    
+  </div>
+</section> 
+
+<script>
+  // Función para alternar la visibilidad de los detalles
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-details');
+    const detailsContent = document.getElementById('project-details');
+    const showMoreText = document.querySelector('.show-more-text');
+    const showLessText = document.querySelector('.show-less-text');
+    const chevronDown = document.querySelector('.chevron-down');
+    const chevronUp = document.querySelector('.chevron-up');
+    
+    if (toggleButton && detailsContent) {
+      toggleButton.addEventListener('click', () => {
+        detailsContent.classList.toggle('hidden');
+        showMoreText.classList.toggle('hidden');
+        showLessText.classList.toggle('hidden');
+        chevronDown.classList.toggle('hidden');
+        chevronUp.classList.toggle('hidden');
+      });
+    }
+  });
+</script> 
