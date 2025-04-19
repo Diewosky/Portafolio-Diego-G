@@ -15,7 +15,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -30,29 +30,27 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Preparar archivos para el despliegue
-      - name: Prepare files for deployment
+      - name: Prepare deployment files
         run: |
-          # Archivo .nojekyll para evitar el procesamiento Jekyll
           touch dist/.nojekyll
-          
-          # Copiar archivos adicionales
           cp public/404.html dist/404.html
-          cp public/_redirects dist/_redirects || true
-          cp public/index-redirect.html dist/index-redirect.html || true
-          
-          # Verificar que exista el archivo index.html en la raíz de dist
-          if [ ! -f dist/index.html ]; then
-            echo "ERROR: No se encontró index.html en la carpeta dist"
-            exit 1
+          # Intentar usar el archivo de redirección si existe en dist
+          if [ -f "dist/index-root.html" ]; then
+            cp dist/index-root.html dist/index.html
           fi
-          
-          # Crear un archivo 404.html en la raíz
-          cp dist/404.html dist/404.html
-          
-      # Verificar estructura de la carpeta dist
-      - name: List dist directory
-        run: ls -la dist
+          # Copiar el archivo de redirección de la raíz al directorio gh-pages
+          if [ -f "index-gh-pages.html" ]; then
+            cp index-gh-pages.html dist/index-gh-pages.html
+          fi
+
+      - name: Debug directory structure
+        run: |
+          echo "==== Project root files ===="
+          ls -la
+          echo "==== dist directory files ===="
+          ls -la dist
+          echo "==== public directory files ===="
+          ls -la public
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
