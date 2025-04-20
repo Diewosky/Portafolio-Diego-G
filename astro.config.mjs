@@ -4,7 +4,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  outDir: './docs',
   site: 'https://diewosky.github.io',
   base: '/Portafolio-Diego-G',
+  integrations: [tailwind()]
 });
