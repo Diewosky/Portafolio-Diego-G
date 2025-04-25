@@ -99,14 +99,15 @@ const navItems = [
   const sunIcons = document.querySelectorAll('.sun');
   const moonIcons = document.querySelectorAll('.moon');
   
-  // Comprobar tema guardado o usar preferencia del sistema
-  if (localStorage.getItem('theme') === 'light' || 
-    (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+  // Forzar modo oscuro por defecto, a menos que explícitamente se haya guardado el modo claro
+  if (localStorage.getItem('theme') === 'light') {
     document.documentElement.classList.remove('dark');
     sunIcons.forEach(icon => icon.classList.remove('hidden'));
     moonIcons.forEach(icon => icon.classList.add('hidden'));
   } else {
+    // Siempre iniciar en modo oscuro por defecto
     document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
     moonIcons.forEach(icon => icon.classList.remove('hidden'));
     sunIcons.forEach(icon => icon.classList.add('hidden'));
   }
