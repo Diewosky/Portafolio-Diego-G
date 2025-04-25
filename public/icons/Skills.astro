@@ -10,7 +10,7 @@ const technologies = {
           { name: "Python", color: "blue", icon: "Python" },
           { name: "Java", color: "orange", icon: "Java" },
           { name: "C", color: "blue", icon: "C" },
-          { name: "C++", color: "blue", icon: "C++" }
+          { name: "C++", color: "blue", icon: "Cpp" }
         ]
       },
       {
@@ -92,7 +92,7 @@ const colorClasses = {
 // Función para obtener la ruta del icono
 const getIconPath = (icon) => {
   // Verificar si existe el formato PNG
-  return `${import.meta.env.BASE_URL}/icons/${icon}.png`;
+  return `${import.meta.env.BASE_URL}/projects/${icon}.png`;
 };
 ---
 
